@@ -1,13 +1,19 @@
 @import 'normalize.css';
 /* end Normalize.css NPM Package*/
 /* Base CSS for Tiktok */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
-  box-sizing: border-box;
   body {
     font-family: $font-primary;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     overflow-x: hidden;

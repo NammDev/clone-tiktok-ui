@@ -1,0 +1,16 @@
+.container {
+  width: 100vw;
+  max-width: 1150px;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  background-color: honeydew;
+  .main {
+    margin: 0 16px;
+    width: 692px;
+    max-width: 692px;
+    padding: 24px 0;
+    position: relative;
+  }
+}

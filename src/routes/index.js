@@ -5,7 +5,7 @@ import { HeaderOnly } from '~/components/Layout'
 
 // Don't Need Login
 const publicRoutes = [
-  { path: '/', component: Home, layout: null },
+  { path: '/', component: Home },
   { path: '/following', component: Following },
   { path: '/upload', component: Upload, layout: HeaderOnly },
 ]

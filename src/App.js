@@ -2,11 +2,15 @@ import { Fragment } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { publicRoutes } from '~/routes'
 import { DefaultLayout } from '~/components/Layout'
+import classNames from 'classnames/bind'
+import styles from './App.module.scss'
+
+const cx = classNames.bind(styles)
 
 function App() {
   return (
     <Router>
-      <div className='app'>
+      <div className={cx('app')}>
         <Routes>
           {publicRoutes.map((route, index) => {
             let Layout = DefaultLayout

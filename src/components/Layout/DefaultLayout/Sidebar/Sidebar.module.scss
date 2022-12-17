@@ -1,0 +1,28 @@
+.sideBar {
+  position: relative;
+  width: 356px;
+}
+
+.wrapper {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  width: 356px;
+  background: rgba(255, 255, 255, 1);
+  z-index: 99;
+  padding-right: 8px;
+  background-color: cornflowerblue;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  perspective-origin: right top;
+  .scrollContainer {
+    padding: 20px 0 26px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 100%;
+  }
+}
