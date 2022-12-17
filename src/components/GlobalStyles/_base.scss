@@ -1,0 +1,34 @@
+@import 'normalize.css';
+/* end Normalize.css NPM Package*/
+/* Base CSS for Tiktok */
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  body {
+    font-family: $font-primary;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    overflow-x: hidden;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
