@@ -17,7 +17,7 @@ function Header() {
             <form className={cx('searchInput')}>
               <input
                 type='search'
-                placeHolder='Search accounts and videos'
+                placeholder='Search accounts and videos'
                 className={cx('inputElement')}
               />
               <div className={cx('loadingIcon')}>
