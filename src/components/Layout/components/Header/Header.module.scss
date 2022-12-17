@@ -49,9 +49,12 @@
     background: transparent;
     outline: none;
     padding: 0;
-    width: 292px;
+    width: 252px;
     color: rgba(22, 24, 35, 1);
     caret-color: rgba(254, 44, 85, 1);
+    &:focus ~ .inputBorder {
+      display: block;
+    }
   }
   .loadingIcon {
     font-size: 0;
@@ -74,5 +77,16 @@
     border: none;
     background: transparent;
     margin-left: 0;
+  }
+  .inputBorder {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 1.5px solid rgba(22, 24, 35, 0.2);
+    border-radius: 92px;
+    z-index: -1;
   }
 }
