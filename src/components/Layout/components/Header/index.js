@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
 import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
-import { Logo, Loading, Search } from '~/assets/svg'
-// Loading, , , Upload, Mess, Noti
+import { Logo, Xmark, Loading, Search } from '~/assets/svg'
+//, , , Upload, Mess, Noti
 
 const cx = classNames.bind(styles)
 
@@ -16,7 +16,7 @@ function Header() {
   const hide = () => setVisible(false)
 
   useEffect(() => {
-    if (searchResult.length > 0 && searchResult.length > 0) {
+    if (searchResult.length > 0 && inputSearch.length > 0) {
       show()
     } else {
       hide()
@@ -34,7 +34,6 @@ function Header() {
     <div className={cx('header')}>
       <div className={cx('wrapper')}>
         <Logo />
-
         <div className={cx('centerContainer')}>
           <div className={cx('formContainer')}>
             <Tippy
@@ -71,6 +70,7 @@ function Header() {
             >
               <form className={cx('searchInput')}>
                 <input
+                  style={visible ? { width: '252px' } : { width: '292px' }}
                   onChange={handleChange}
                   value={inputSearch}
                   type='search'
@@ -78,7 +78,7 @@ function Header() {
                   className={cx('inputElement')}
                 />
                 <div className={cx('loadingIcon')}>
-                  <Loading className={cx('loadingCircle')} />
+                  {visible && <Loading className={cx('loadingCircle')} />}
                 </div>
                 <span className={cx('split')}></span>
                 <button className={cx('buttonSearch')}>
