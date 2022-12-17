@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
-import { Logo, Xmark, Search } from '~/assets/svg'
+import { Logo, Loading, Search } from '~/assets/svg'
 // Loading, , , Upload, Mess, Noti
 
 const cx = classNames.bind(styles)
@@ -15,16 +15,18 @@ function Header() {
   const hide = () => setVisible(false)
 
   useEffect(() => {
-    if (searchResult.length > 0) {
+    if (searchResult.length > 0 && searchResult.length > 0) {
       show()
+    } else {
+      hide()
     }
-  }, [inputSearch, searchResult])
+  }, [searchResult])
 
   const handleChange = (e) => {
     setInputSearch(e.target.value)
     setTimeout(() => {
       setSearchResult([1, 2])
-    }, 2000)
+    }, 1000)
   }
 
   return (
@@ -36,6 +38,8 @@ function Header() {
           <div className={cx('formContainer')}>
             <form className={cx('searchInput')}>
               <Tippy
+                interactive
+                appendTo={() => document.body}
                 visible={visible}
                 onClickOutside={hide}
                 render={(attrs) => (
@@ -53,7 +57,7 @@ function Header() {
                 />
               </Tippy>
               <div className={cx('loadingIcon')}>
-                <Xmark />
+                <Loading className={cx('loadingCircle')} />
               </div>
               <span className={cx('split')}></span>
               <button className={cx('buttonSearch')}>

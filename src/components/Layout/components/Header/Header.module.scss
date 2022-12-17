@@ -58,6 +58,9 @@
   }
   .loadingIcon {
     font-size: 0;
+    .loadingCircle {
+      animation: quayDeu 1s linear infinite;
+    }
     svg {
       margin: 0px 12px;
     }
@@ -88,5 +91,14 @@
     border: 1.5px solid rgba(22, 24, 35, 0.2);
     border-radius: 92px;
     z-index: -1;
+  }
+}
+
+@keyframes quayDeu {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
   }
 }
