@@ -1,7 +1,7 @@
 import styles from './Header.module.scss'
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
-import images from '~/assets/images'
+import Logo from '~/assets/images/logo.svg'
 
 const cx = classNames.bind(styles)
 
@@ -10,7 +10,8 @@ function Header() {
     <div className={cx('header')}>
       <div className={cx('wrapper')}>
         <Link className={cx('logo')} to='/upload'>
-          <img src={images.logo} alt='Tiktok' />
+          {/* <img src={images.logo} alt='Tiktok' /> */}
+          <Logo />
         </Link>
 
         <div className={cx('search')}>
