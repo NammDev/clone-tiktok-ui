@@ -1,0 +1,53 @@
+.userItem {
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  .avatarContainer {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0px;
+    font-feature-settings: 'tnum';
+    position: relative;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .userContent {
+    flex: 0 1 auto;
+    min-width: 0px;
+    h4 {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      svg {
+        margin-left: 4px;
+      }
+    }
+    p {
+      font-size: 14px;
+      line-height: 20px;
+      color: rgba(22, 24, 35, 0.5);
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

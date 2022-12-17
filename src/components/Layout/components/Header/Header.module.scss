@@ -94,6 +94,34 @@
   }
 }
 
+.searchResult {
+  width: 361px;
+  .sugAccount {
+    height: 30px;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+  }
+  .sugResult {
+    padding: 15px 16px;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      color: rgb(22, 24, 35);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+
 @keyframes quayDeu {
   from {
     -webkit-transform: rotate(0deg);
