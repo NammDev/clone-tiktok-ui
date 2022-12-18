@@ -1,12 +1,18 @@
 import classNames from 'classnames/bind'
+import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
-import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
-import { Logo, Addition, Loading, Search, More } from '~/assets/svg'
+import { PopperWrapper, ContentSuggest, UserSuggest, Menu } from '~/components/Popper'
+import { Logo, Addition, Loading, Search, Keyboard, Language, Feedback, More } from '~/assets/svg'
 import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
+const menuItems = [
+  { icon: <Language />, title: 'English' },
+  { icon: <Feedback />, title: 'Feedback and help' },
+  { icon: <Keyboard />, title: 'Keyboard shortcuts' },
+]
 
 function Header() {
   const [inputSearch, setInputSearch] = useState('')
@@ -33,7 +39,9 @@ function Header() {
   return (
     <div className={cx('header')}>
       <div className={cx('wrapper')}>
-        <Logo />
+        <Link to='/'>
+          <Logo />
+        </Link>
         <div className={cx('centerContainer')}>
           <div className={cx('formContainer')}>
             <Tippy
@@ -94,9 +102,11 @@ function Header() {
             Upload
           </Button>
           <Button>Log in</Button>
-          <i className={cx('iconWrapper')}>
-            <More />
-          </i>
+          <Menu items={menuItems}>
+            <i className={cx('iconWrapper')}>
+              <More />
+            </i>
+          </Menu>
         </div>
       </div>
     </div>

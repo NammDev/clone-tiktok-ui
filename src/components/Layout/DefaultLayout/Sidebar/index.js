@@ -7,8 +7,8 @@ function Sidebar() {
   return (
     <div className={cx('sideBar')}>
       <div className={cx('wrapper')}>
-        <div className={cx('scrollContainer')}>wrapper</div>
-        <div className={cx('scrollBar')}>scrollBar</div>
+        <div className={cx('scrollContainer')}></div>
+        <div className={cx('scrollBar')}></div>
       </div>
     </div>
   )

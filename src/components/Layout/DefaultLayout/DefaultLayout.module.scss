@@ -5,7 +5,6 @@
   display: flex;
   justify-content: space-between;
   align-self: center;
-  background-color: honeydew;
   .main {
     margin: 0 16px;
     width: 692px;
@@ -13,4 +12,10 @@
     padding: 24px 0;
     position: relative;
   }
+}
+
+.containerHeaderOnly {
+  margin: 60px auto 0 auto;
+  justify-content: start;
+  padding-top: 60px;
 }
