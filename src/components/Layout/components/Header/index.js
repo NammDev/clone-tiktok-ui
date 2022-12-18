@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import styles from './Header.module.scss'
 import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
-import { Logo, Xmark, Loading, Search } from '~/assets/svg'
+import { Logo, Addition, Loading, Search } from '~/assets/svg'
+import Button from '~/components/Button'
 //, , , Upload, Mess, Noti
 
 const cx = classNames.bind(styles)
@@ -89,7 +90,12 @@ function Header() {
             </Tippy>
           </div>
         </div>
-        <div className={cx('actions')}></div>
+        <div className={cx('actions')}>
+          <Button to='/upload' hasIcon left={<Addition />}>
+            Upload
+          </Button>
+          <Button>Log in</Button>
+        </div>
       </div>
     </div>
   )

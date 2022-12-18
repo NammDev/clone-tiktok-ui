@@ -1,12 +1,13 @@
 import classNames from 'classnames/bind'
 import styles from './GetApp.module.scss'
+import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
 
 function GetApp() {
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('button')}></div>
+      <Button className={cx('getApp')}>Get app</Button>
     </div>
   )
 }
