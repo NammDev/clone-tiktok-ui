@@ -9,9 +9,42 @@ import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
 const menuItems = [
-  { icon: <Language />, title: 'English' },
-  { icon: <Feedback />, title: 'Feedback and help' },
-  { icon: <Keyboard />, title: 'Keyboard shortcuts' },
+  {
+    icon: <Language />,
+    title: 'English',
+    children: {
+      title: 'Language',
+      choose: 'en',
+      data: [
+        {
+          code: 'en',
+          title: 'English',
+        },
+        {
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+        {
+          code: 'it',
+          title: 'Italiano',
+        },
+        {
+          code: 'po',
+          title: 'Polski',
+        },
+        {
+          code: 'in ',
+          title: 'Basarawa',
+        },
+        {
+          code: 'po',
+          title: 'Korea',
+        },
+      ],
+    },
+  },
+  { icon: <Feedback />, title: 'Feedback and help', to: '/upload' },
+  { icon: <Keyboard />, title: 'Keyboard shortcuts', to: '/upload' },
 ]
 
 function Header() {
@@ -89,7 +122,7 @@ function Header() {
                   {visible && <Loading className={cx('loadingCircle')} />}
                 </div>
                 <span className={cx('split')}></span>
-                <button className={cx('buttonSearch')}>
+                <button type='button' className={cx('buttonSearch')}>
                   <Search />
                 </button>
                 <div className={cx('inputBorder')}></div>
