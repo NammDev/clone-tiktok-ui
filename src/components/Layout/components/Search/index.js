@@ -23,6 +23,9 @@ function SearchResult() {
   }, [searchResult, inputSearch])
 
   useEffect(() => {
+    if (!inputSearch) {
+      return
+    }
     fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${inputSearch}&type=less`)
       .then((res) => res.json())
       .then((res) => {
