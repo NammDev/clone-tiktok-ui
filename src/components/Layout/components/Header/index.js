@@ -198,14 +198,15 @@ function Header() {
               <Button to='/upload' hasIcon left={<Addition />}>
                 Upload
               </Button>
-              <TippyStyle placement='bottom' content='Messages'>
+              <TippyStyle delay={[0, 50]} placement='bottom' content='Messages'>
                 <div className={cx('messages')}>
                   <Messages />
                 </div>
               </TippyStyle>
-              <TippyStyle placement='bottom' content='Inbox'>
+              <TippyStyle delay={[0, 50]} placement='bottom' content='Inbox'>
                 <div className={cx('inbox')}>
                   <Inbox />
+                  <span className={cx('badge')}>12</span>
                 </div>
               </TippyStyle>
 

@@ -51,7 +51,7 @@ function Menu({ children, items = [], onClickLogout }) {
         setHistory((prev) => prev.slice(0, 1))
       }}
       appendTo={() => document.body}
-      delay={[0, 500]}
+      delay={[0, 300]}
       offset={[12, 10]}
       placement='bottom-end'
       render={(attrs) => (
