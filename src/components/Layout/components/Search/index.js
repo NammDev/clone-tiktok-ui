@@ -4,6 +4,7 @@ import Tippy from '@tippyjs/react/headless'
 import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
 import { Loading, Xmark, Search } from '~/assets/svg'
 import { useState, useEffect, useRef } from 'react'
+import { useDebounce } from '~/hooks'
 
 const cx = classNames.bind(styles)
 const URL_SEARCH_USER = 'https://tiktok.fullstack.edu.vn/api/users/search'
@@ -14,24 +15,17 @@ function SearchResult() {
   const [visible, setVisible] = useState(true)
   const [loading, setLoading] = useState(false)
 
+  const debounced = useDebounce(inputSearch, 500)
+
   const inputRef = useRef(null)
 
   useEffect(() => {
-    if (searchResult.length > 0) {
-      setVisible(true)
-    } else {
-      setVisible(false)
-    }
-  }, [searchResult])
-
-  useEffect(() => {
-    if (!inputSearch.trim()) {
+    if (!debounced.trim()) {
       setSearchResult([])
       return
     }
     setLoading(true)
-
-    fetch(`${URL_SEARCH_USER}?q=${encodeURIComponent(inputSearch)}&type=less`)
+    fetch(`${URL_SEARCH_USER}?q=${encodeURIComponent(debounced)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
         setLoading(false)
@@ -40,7 +34,7 @@ function SearchResult() {
         }
       })
       .catch(() => setLoading(false))
-  }, [inputSearch])
+  }, [debounced])
 
   return (
     <div className={cx('centerContainer')}>
@@ -48,7 +42,7 @@ function SearchResult() {
         <Tippy
           interactive
           appendTo={() => document.body}
-          visible={visible}
+          visible={visible && searchResult.length > 0}
           onClickOutside={() => setVisible(false)}
           render={(attrs) => (
             <div className={cx('searchResult')} tabIndex='-1' {...attrs}>
