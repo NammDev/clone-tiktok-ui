@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import styles from './Search.module.scss'
 import Tippy from '@tippyjs/react/headless'
 import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
-import { Loading, Xmark, Search } from '~/assets/svg'
+import { Xmark, Search } from '~/assets/svg'
 import { useState, useEffect, useRef } from 'react'
 
 const cx = classNames.bind(styles)
@@ -20,14 +20,17 @@ function SearchResult() {
     } else {
       setVisible(false)
     }
-  }, [searchResult])
+  }, [searchResult, inputSearch])
 
-  const handleChange = (e) => {
-    setInputSearch(e.target.value)
-    setTimeout(() => {
-      setSearchResult((prev) => [...prev, e.target.value])
-    }, 1000)
-  }
+  useEffect(() => {
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${inputSearch}&type=less`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status_code !== 422) {
+          return setSearchResult(res.data)
+        }
+      })
+  }, [inputSearch])
 
   return (
     <div className={cx('centerContainer')}>
@@ -46,17 +49,9 @@ function SearchResult() {
                 <ContentSuggest content='schannel' />
                 <ContentSuggest content='say you do' />
                 <div className={cx('sugAccount')}>Accounts</div>
-                <UserSuggest
-                  imgUrl='https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1654724776460294~c5_300x300.webp?x-expires=1671476400&x-signature=%2FjiVmeeUMSgZyi1lsxMU0ZyzhHk%3D'
-                  account='sukiluser'
-                  name='Sookilooser'
-                />
-                <UserSuggest
-                  imgUrl='https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/6b877195e47479c56fc6193582e91dac~c5_300x300.webp?x-expires=1671476400&x-signature=YZZXmGVZ48Ntygqb4uq5kVHYFsY%3D'
-                  account='serhant'
-                  name='SERHANT.'
-                  checked
-                />
+                {searchResult.map((user) => (
+                  <UserSuggest key={user.id} user={user} />
+                ))}
                 <div className={cx('sugResult')}>
                   <p>View all results for "{inputSearch}"</p>
                 </div>
@@ -68,7 +63,9 @@ function SearchResult() {
             <input
               ref={inputRef}
               style={inputSearch ? { width: '252px' } : { width: '292px' }}
-              onChange={handleChange}
+              onChange={(e) => {
+                setInputSearch(e.target.value)
+              }}
               onFocus={() => {
                 if (inputSearch.length > 0) setVisible(true)
               }}
