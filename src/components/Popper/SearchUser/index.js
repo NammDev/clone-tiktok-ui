@@ -9,7 +9,7 @@ const cx = classNames.bind(styles)
 function SearchUser({ user }) {
   const { avatar, nickname, last_name, tick } = user
   return (
-    <Link to={`/@${nickname}`} className={cx('userItem')}>
+    <Link to={`/profile/${nickname}`} className={cx('userItem')}>
       <span shape='circle' className={cx('avatarContainer')}>
         <ImageSrc className={cx('avatar')} src={avatar} alt={nickname} />
       </span>
