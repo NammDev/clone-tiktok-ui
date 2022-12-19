@@ -3,7 +3,7 @@ import styles from './Search.module.scss'
 import Tippy from '@tippyjs/react/headless'
 import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
 import { Loading, Xmark, Search } from '~/assets/svg'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const cx = classNames.bind(styles)
 
@@ -11,14 +11,14 @@ function SearchResult() {
   const [inputSearch, setInputSearch] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [visible, setVisible] = useState(true)
-  const show = () => setVisible(true)
-  const hide = () => setVisible(false)
+
+  const inputRef = useRef(null)
 
   useEffect(() => {
     if (searchResult.length > 0 && inputSearch.length > 0) {
-      show()
+      setVisible(true)
     } else {
-      hide()
+      setVisible(false)
     }
   }, [searchResult])
 
@@ -36,7 +36,7 @@ function SearchResult() {
           interactive
           appendTo={() => document.body}
           visible={visible}
-          onClickOutside={hide}
+          onClickOutside={() => setVisible(false)}
           render={(attrs) => (
             <div className={cx('searchResult')} tabIndex='-1' {...attrs}>
               <PopperWrapper>
@@ -66,22 +66,32 @@ function SearchResult() {
         >
           <form className={cx('searchInput')}>
             <input
-              style={visible ? { width: '252px' } : { width: '292px' }}
+              ref={inputRef}
+              style={inputSearch ? { width: '252px' } : { width: '292px' }}
               onChange={handleChange}
+              onFocus={() => {
+                if (inputSearch.length > 0) setVisible(true)
+              }}
               value={inputSearch}
               type='search'
               placeholder='Search accounts and videos'
               className={cx('inputElement')}
             />
-            {visible && (
+            {inputSearch && (
               // <div className={cx('loadingIcon')}>
               //   <Loading className={cx('loadingCircle')} />
               // </div>
-              <Xmark />
+              <Xmark
+                onClick={() => {
+                  setInputSearch('')
+                  setVisible(false)
+                  inputRef.current.focus()
+                }}
+              />
             )}
             <span className={cx('split')}></span>
             <button type='button' className={cx('buttonSearch')}>
-              <Search />
+              <Search fill={inputSearch ? `rgba(22, 24, 35, .75)` : 'rgba(22, 24, 35, .34)'} />
             </button>
             <div className={cx('inputBorder')}></div>
           </form>
