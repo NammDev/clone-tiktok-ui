@@ -2,13 +2,14 @@ import classNames from 'classnames/bind'
 import styles from './SearchUser.module.scss'
 import { CircleCheck } from '~/assets/svg'
 import ImageSrc from '~/components/ImageSrc'
+import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 
 function SearchUser({ user }) {
   const { avatar, nickname, last_name, tick } = user
   return (
-    <div className={cx('userItem')}>
+    <Link to={`/@${nickname}`} className={cx('userItem')}>
       <span shape='circle' className={cx('avatarContainer')}>
         <ImageSrc className={cx('avatar')} src={avatar} alt={nickname} />
       </span>
@@ -19,7 +20,7 @@ function SearchUser({ user }) {
         </h4>
         <p>{last_name}</p>
       </div>
-    </div>
+    </Link>
   )
 }
 

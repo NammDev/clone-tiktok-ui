@@ -2,37 +2,44 @@ import classNames from 'classnames/bind'
 import styles from './Search.module.scss'
 import Tippy from '@tippyjs/react/headless'
 import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
-import { Xmark, Search } from '~/assets/svg'
+import { Loading, Xmark, Search } from '~/assets/svg'
 import { useState, useEffect, useRef } from 'react'
 
 const cx = classNames.bind(styles)
+const URL_SEARCH_USER = 'https://tiktok.fullstack.edu.vn/api/users/search'
 
 function SearchResult() {
   const [inputSearch, setInputSearch] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [visible, setVisible] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const inputRef = useRef(null)
 
   useEffect(() => {
-    if (searchResult.length > 0 && inputSearch.length > 0) {
+    if (searchResult.length > 0) {
       setVisible(true)
     } else {
       setVisible(false)
     }
-  }, [searchResult, inputSearch])
+  }, [searchResult])
 
   useEffect(() => {
-    if (!inputSearch) {
+    if (!inputSearch.trim()) {
+      setSearchResult([])
       return
     }
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${inputSearch}&type=less`)
+    setLoading(true)
+
+    fetch(`${URL_SEARCH_USER}?q=${encodeURIComponent(inputSearch)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
+        setLoading(false)
         if (res.status_code !== 422) {
           return setSearchResult(res.data)
         }
       })
+      .catch(() => setLoading(false))
   }, [inputSearch])
 
   return (
@@ -46,11 +53,10 @@ function SearchResult() {
           render={(attrs) => (
             <div className={cx('searchResult')} tabIndex='-1' {...attrs}>
               <PopperWrapper>
-                <ContentSuggest content='speed' />
-                <ContentSuggest content='Son Tung MT-P' />
-                <ContentSuggest content='story tam trang' />
-                <ContentSuggest content='schannel' />
-                <ContentSuggest content='say you do' />
+                <ContentSuggest content={`${inputSearch} suggest`} />
+                {searchResult.map((user) => (
+                  <ContentSuggest key={user.id} content={user.nickname} />
+                ))}
                 <div className={cx('sugAccount')}>Accounts</div>
                 {searchResult.map((user) => (
                   <UserSuggest key={user.id} user={user} />
@@ -67,6 +73,9 @@ function SearchResult() {
               ref={inputRef}
               style={inputSearch ? { width: '252px' } : { width: '292px' }}
               onChange={(e) => {
+                if (e.target.value.length > 0 && e.target.value === ' ') {
+                  return
+                }
                 setInputSearch(e.target.value)
               }}
               onFocus={() => {
@@ -77,10 +86,12 @@ function SearchResult() {
               placeholder='Search accounts and videos'
               className={cx('inputElement')}
             />
-            {inputSearch && (
-              // <div className={cx('loadingIcon')}>
-              //   <Loading className={cx('loadingCircle')} />
-              // </div>
+            {loading && (
+              <div className={cx('loadingIcon')}>
+                <Loading className={cx('loadingCircle')} />
+              </div>
+            )}
+            {inputSearch && !loading && (
               <Xmark
                 onClick={() => {
                   setInputSearch('')

@@ -2,6 +2,7 @@
   padding: 9px 16px;
   display: flex;
   align-items: center;
+  color: inherit;
   cursor: pointer;
   .avatarContainer {
     width: 40px;
@@ -32,7 +33,7 @@
     h4 {
       font-size: 16px;
       line-height: 22px;
-      font-weight: 600;
+      font-weight: 500;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
