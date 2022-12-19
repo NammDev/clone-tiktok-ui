@@ -2,9 +2,27 @@ import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Tippy from '@tippyjs/react/headless'
+import TippyStyle from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
 import styles from './Header.module.scss'
 import { PopperWrapper, ContentSuggest, UserSuggest, Menu } from '~/components/Popper'
-import { Logo, Addition, Loading, Search, Keyboard, Language, Feedback, More } from '~/assets/svg'
+import {
+  Logo,
+  Addition,
+  Loading,
+  Search,
+  Keyboard,
+  Language,
+  Feedback,
+  More,
+  Inbox,
+  Messages,
+  Profile,
+  TiktokCircle,
+  Live,
+  Settings,
+  Logout,
+} from '~/assets/svg'
 import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
@@ -46,8 +64,52 @@ const menuItems = [
   { icon: <Feedback />, title: 'Feedback and help', to: '/upload' },
   { icon: <Keyboard />, title: 'Keyboard shortcuts', to: '/upload' },
 ]
+const userMenu = [
+  { icon: <Profile />, title: 'View Profile' },
+  { icon: <TiktokCircle />, title: 'Get Coins' },
+  { icon: <Live />, title: 'LIVE Studio' },
+  { icon: <Settings />, title: 'Settings' },
+  {
+    icon: <Language />,
+    title: 'English',
+    children: {
+      title: 'Language',
+      choose: 'en',
+      data: [
+        {
+          code: 'en',
+          title: 'English',
+        },
+        {
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+        {
+          code: 'it',
+          title: 'Italiano',
+        },
+        {
+          code: 'po',
+          title: 'Polski',
+        },
+        {
+          code: 'in ',
+          title: 'Basarawa',
+        },
+        {
+          code: 'po',
+          title: 'Korea',
+        },
+      ],
+    },
+  },
+  { icon: <Feedback />, title: 'Feedback and help', to: '/upload' },
+  { icon: <Keyboard />, title: 'Keyboard shortcuts', to: '/' },
+  { icon: <Logout />, title: 'Log out', separate: true },
+]
 
 function Header() {
+  const [hasUser, setHasUser] = useState(false)
   const [inputSearch, setInputSearch] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [visible, setVisible] = useState(true)
@@ -131,15 +193,50 @@ function Header() {
           </div>
         </div>
         <div className={cx('actions')}>
-          <Button to='/upload' hasIcon left={<Addition />}>
-            Upload
-          </Button>
-          <Button>Log in</Button>
-          <Menu items={menuItems}>
-            <i className={cx('iconWrapper')}>
-              <More />
-            </i>
-          </Menu>
+          {hasUser ? (
+            <>
+              <Button to='/upload' hasIcon left={<Addition />}>
+                Upload
+              </Button>
+              <TippyStyle placement='bottom' content='Messages'>
+                <div className={cx('messages')}>
+                  <Messages />
+                </div>
+              </TippyStyle>
+              <TippyStyle placement='bottom' content='Inbox'>
+                <div className={cx('inbox')}>
+                  <Inbox />
+                </div>
+              </TippyStyle>
+
+              <Menu
+                items={userMenu}
+                onClickLogout={() => {
+                  setHasUser(false)
+                }}
+              >
+                <div className={cx('profileContainer')} />
+              </Menu>
+            </>
+          ) : (
+            <>
+              <Button to='/upload' hasIcon left={<Addition />}>
+                Upload
+              </Button>
+              <Button
+                onClick={() => {
+                  setHasUser(true)
+                }}
+              >
+                Log in
+              </Button>
+              <Menu items={menuItems}>
+                <i className={cx('iconWrapper')}>
+                  <More />
+                </i>
+              </Menu>
+            </>
+          )}
         </div>
       </div>
     </div>
