@@ -42,7 +42,9 @@ function Menu({ children, items = [] }) {
   return (
     <Tippy
       interactive
-      visible
+      onHide={() => {
+        setHistory((prev) => prev.slice(0, 1))
+      }}
       appendTo={() => document.body}
       delay={[0, 700]}
       placement='bottom-end'
