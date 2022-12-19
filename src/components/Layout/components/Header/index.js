@@ -24,6 +24,7 @@ import {
   Logout,
 } from '~/assets/svg'
 import Button from '~/components/Button'
+import ImageBg from '~/components/ImageBg'
 
 const cx = classNames.bind(styles)
 const menuItems = [
@@ -216,7 +217,13 @@ function Header() {
                   setHasUser(false)
                 }}
               >
-                <div className={cx('profileContainer')} />
+                <ImageBg
+                  src={
+                    'https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1658379194980357~c5_720x720.jpeg?x-expires=1671609600&x-signature=VXLdaifQM3TYUZNOWpBfgShsnf0%3D'
+                  }
+                  wid={32}
+                  ml={24}
+                />
               </Menu>
             </>
           ) : (
