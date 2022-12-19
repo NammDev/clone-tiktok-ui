@@ -10,6 +10,7 @@ import {
   Logo,
   Addition,
   Loading,
+  Xmark,
   Search,
   Keyboard,
   Language,
@@ -128,7 +129,7 @@ function Header() {
   const handleChange = (e) => {
     setInputSearch(e.target.value)
     setTimeout(() => {
-      setSearchResult([1, 2])
+      setSearchResult((prev) => [...prev, e.target.value])
     }, 1000)
   }
 
@@ -181,9 +182,12 @@ function Header() {
                   placeholder='Search accounts and videos'
                   className={cx('inputElement')}
                 />
-                <div className={cx('loadingIcon')}>
-                  {visible && <Loading className={cx('loadingCircle')} />}
-                </div>
+                {visible && (
+                  // <div className={cx('loadingIcon')}>
+                  //   <Loading className={cx('loadingCircle')} />
+                  // </div>
+                  <Xmark />
+                )}
                 <span className={cx('split')}></span>
                 <button type='button' className={cx('buttonSearch')}>
                   <Search />
