@@ -1,17 +1,13 @@
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import Tippy from '@tippyjs/react/headless'
-import TippyStyle from '@tippyjs/react'
+import { useState } from 'react'
+import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import styles from './Header.module.scss'
-import { PopperWrapper, ContentSuggest, UserSuggest, Menu } from '~/components/Popper'
+import { Menu } from '~/components/Popper'
 import {
   Logo,
   Addition,
-  Loading,
-  Xmark,
-  Search,
   Keyboard,
   Language,
   Feedback,
@@ -26,6 +22,7 @@ import {
 } from '~/assets/svg'
 import Button from '~/components/Button'
 import ImageBg from '~/components/ImageBg'
+import SearchResult from '../Search'
 
 const cx = classNames.bind(styles)
 const menuItems = [
@@ -112,108 +109,30 @@ const userMenu = [
 
 function Header() {
   const [hasUser, setHasUser] = useState(false)
-  const [inputSearch, setInputSearch] = useState('')
-  const [searchResult, setSearchResult] = useState([])
-  const [visible, setVisible] = useState(true)
-  const show = () => setVisible(true)
-  const hide = () => setVisible(false)
-
-  useEffect(() => {
-    if (searchResult.length > 0 && inputSearch.length > 0) {
-      show()
-    } else {
-      hide()
-    }
-  }, [searchResult])
-
-  const handleChange = (e) => {
-    setInputSearch(e.target.value)
-    setTimeout(() => {
-      setSearchResult((prev) => [...prev, e.target.value])
-    }, 1000)
-  }
 
   return (
     <div className={cx('header')}>
       <div className={cx('wrapper')}>
-        <Link to='/'>
-          <Logo />
-        </Link>
-        <div className={cx('centerContainer')}>
-          <div className={cx('formContainer')}>
-            <Tippy
-              interactive
-              appendTo={() => document.body}
-              visible={visible}
-              onClickOutside={hide}
-              render={(attrs) => (
-                <div className={cx('searchResult')} tabIndex='-1' {...attrs}>
-                  <PopperWrapper>
-                    <ContentSuggest content='speed' />
-                    <ContentSuggest content='Son Tung MT-P' />
-                    <ContentSuggest content='story tam trang' />
-                    <ContentSuggest content='schannel' />
-                    <ContentSuggest content='say you do' />
-                    <div className={cx('sugAccount')}>Accounts</div>
-                    <UserSuggest
-                      imgUrl='https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1654724776460294~c5_300x300.webp?x-expires=1671476400&x-signature=%2FjiVmeeUMSgZyi1lsxMU0ZyzhHk%3D'
-                      account='sukiluser'
-                      name='Sookilooser'
-                    />
-                    <UserSuggest
-                      imgUrl='https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/6b877195e47479c56fc6193582e91dac~c5_300x300.webp?x-expires=1671476400&x-signature=YZZXmGVZ48Ntygqb4uq5kVHYFsY%3D'
-                      account='serhant'
-                      name='SERHANT.'
-                      checked
-                    />
-                    <div className={cx('sugResult')}>
-                      <p>View all results for "{inputSearch}"</p>
-                    </div>
-                  </PopperWrapper>
-                </div>
-              )}
-            >
-              <form className={cx('searchInput')}>
-                <input
-                  style={visible ? { width: '252px' } : { width: '292px' }}
-                  onChange={handleChange}
-                  value={inputSearch}
-                  type='search'
-                  placeholder='Search accounts and videos'
-                  className={cx('inputElement')}
-                />
-                {visible && (
-                  // <div className={cx('loadingIcon')}>
-                  //   <Loading className={cx('loadingCircle')} />
-                  // </div>
-                  <Xmark />
-                )}
-                <span className={cx('split')}></span>
-                <button type='button' className={cx('buttonSearch')}>
-                  <Search />
-                </button>
-                <div className={cx('inputBorder')}></div>
-              </form>
-            </Tippy>
-          </div>
-        </div>
+        {/* prettier-ignore */}
+        <Link to='/'><Logo /></Link>
+        <SearchResult />
         <div className={cx('actions')}>
           {hasUser ? (
             <>
               <Button to='/upload' hasIcon left={<Addition />}>
                 Upload
               </Button>
-              <TippyStyle delay={[0, 50]} placement='bottom' content='Messages'>
+              <Tippy delay={[0, 50]} placement='bottom' content='Messages'>
                 <div className={cx('messages')}>
                   <Messages />
                 </div>
-              </TippyStyle>
-              <TippyStyle delay={[0, 50]} placement='bottom' content='Inbox'>
+              </Tippy>
+              <Tippy delay={[0, 50]} placement='bottom' content='Inbox'>
                 <div className={cx('inbox')}>
                   <Inbox />
                   <span className={cx('badge')}>12</span>
                 </div>
-              </TippyStyle>
+              </Tippy>
 
               <Menu
                 items={userMenu}
