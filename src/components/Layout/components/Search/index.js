@@ -56,7 +56,14 @@ function SearchResult() {
                 ))}
                 <div className={cx('sugAccount')}>Accounts</div>
                 {searchResult.map((user) => (
-                  <UserSuggest key={user.id} user={user} onClick={() => setVisible(false)} />
+                  <UserSuggest
+                    key={user.id}
+                    user={user}
+                    onClick={() => {
+                      setVisible(false)
+                      setInputSearch('')
+                    }}
+                  />
                 ))}
                 <div className={cx('sugResult')}>
                   <p>View all results for "{inputSearch}"</p>
@@ -70,10 +77,10 @@ function SearchResult() {
               ref={inputRef}
               style={inputSearch ? { width: '252px' } : { width: '292px' }}
               onChange={(e) => {
-                if (e.target.value.length > 0 && e.target.value === ' ') {
-                  return
+                const searchValue = e.target.value
+                if (!searchValue.startsWith(' ')) {
+                  setInputSearch(searchValue)
                 }
-                setInputSearch(e.target.value)
               }}
               onFocus={() => {
                 if (inputSearch.length > 0) setVisible(true)
@@ -91,9 +98,9 @@ function SearchResult() {
             {inputSearch && !loading && (
               <Xmark
                 onClick={() => {
-                  setInputSearch('')
                   setVisible(false)
                   inputRef.current.focus()
+                  setInputSearch('')
                 }}
               />
             )}

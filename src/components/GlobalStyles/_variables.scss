@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Proxima';
+  src: url('../../assets/fonts/ProximaNova-Regular.otf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Proxima';
+  src: url('../../assets/fonts/Proxima\ Nova\ Alt\ Bold.otf') format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Proxima';
+  src: url('../../assets/fonts/Proxima\ Nova\ Alt\ Light.otf') format('truetype');
+  font-weight: 400;
+}
+
 /* Colors */
 $color-primary: rgba(254, 44, 85, 1);
 $white: white;
@@ -7,3 +23,4 @@ $white: white;
 
 /* Font Styles */
 $font-primary: 'IBM Plex Sans', sans-serif;
+$font-pro: 'Proxima', sans-serif;

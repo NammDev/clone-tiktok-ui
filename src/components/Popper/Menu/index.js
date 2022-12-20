@@ -5,10 +5,11 @@ import { PopperWrapper } from '~/components/Popper'
 import Button from '~/components/Button'
 import { Back } from '~/assets/svg'
 import styles from './Menu.module.scss'
+import { faL } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 
-function Menu({ children, items = [], onClickLogout }) {
+function Menu({ children, items = [], onClickLogout, hideOnClick = false }) {
   const [history, setHistory] = useState([{ data: items }])
   const current = history[history.length - 1]
   const choose = current.choose
@@ -53,6 +54,7 @@ function Menu({ children, items = [], onClickLogout }) {
       appendTo={() => document.body}
       delay={[0, 300]}
       offset={[12, 10]}
+      hideOnClick={hideOnClick}
       placement='bottom-end'
       render={(attrs) => (
         <div className={cx('menuList')} tabIndex='-1' {...attrs}>
