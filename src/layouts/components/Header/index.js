@@ -23,7 +23,7 @@ import {
 import Button from '~/components/Button'
 import ImageBg from '~/components/ImageBg'
 import SearchResult from '../Search'
-import routesConfig from '~/config/routes'
+import config from '~/config'
 
 const cx = classNames.bind(styles)
 
@@ -127,17 +127,17 @@ const menuItems = [
       ],
     },
   },
-  { icon: <Feedback />, title: 'Feedback and help', to: routesConfig.upload },
-  { icon: <Keyboard />, title: 'Keyboard shortcuts', to: routesConfig.upload },
+  { icon: <Feedback />, title: 'Feedback and help', to: config.routes.upload },
+  { icon: <Keyboard />, title: 'Keyboard shortcuts', to: config.routes.upload },
 ]
 const userMenu = [
-  { icon: <Profile />, title: 'View Profile', to: routesConfig.profile },
+  { icon: <Profile />, title: 'View Profile', to: config.routes.profile },
   { icon: <TiktokCircle />, title: 'Get Coins' },
   { icon: <Live />, title: 'LIVE Studio' },
   { icon: <Settings />, title: 'Settings' },
   menuItems[0],
-  { icon: <Feedback />, title: 'Feedback and help', to: routesConfig.upload },
-  { icon: <Keyboard />, title: 'Keyboard shortcuts', to: routesConfig.home },
+  { icon: <Feedback />, title: 'Feedback and help', to: config.routes.upload },
+  { icon: <Keyboard />, title: 'Keyboard shortcuts', to: config.routes.home },
   { icon: <Logout />, title: 'Log out', separate: true },
 ]
 
@@ -148,12 +148,12 @@ function Header() {
     <div className={cx('header')}>
       <div className={cx('wrapper')}>
         {/* prettier-ignore */}
-        <Link style={{display: 'flex'}} to={routesConfig.home}><Logo /></Link>
+        <Link style={{display: 'flex'}} to={config.routes.home}><Logo /></Link>
         <SearchResult />
         <div className={cx('actions')}>
           {hasUser ? (
             <>
-              <Button to={routesConfig.upload} hasIcon left={<Addition />}>
+              <Button to={config.routes.upload} hasIcon left={<Addition />}>
                 Upload
               </Button>
               <Tippy delay={[0, 50]} placement='bottom' content='Messages'>
@@ -185,7 +185,7 @@ function Header() {
             </>
           ) : (
             <>
-              <Button to={routesConfig.upload} hasIcon left={<Addition />}>
+              <Button to={config.routes.upload} hasIcon left={<Addition />}>
                 Upload
               </Button>
               <Button
