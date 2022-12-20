@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { publicRoutes } from '~/routes'
-import { DefaultLayout } from '~/components/Layout'
+import { MainLayout } from '~/layouts'
 import classNames from 'classnames/bind'
 import styles from './App.module.scss'
 
@@ -13,7 +13,7 @@ function App() {
       <div className={cx('app')}>
         <Routes>
           {publicRoutes.map((route, index) => {
-            let Layout = DefaultLayout
+            let Layout = MainLayout
             if (route.layout) {
               Layout = route.layout
             } else if (route.layout === null) {

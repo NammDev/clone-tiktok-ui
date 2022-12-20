@@ -1,11 +1,13 @@
 import classNames from 'classnames/bind'
 import styles from './Search.module.scss'
 import Tippy from '@tippyjs/react/headless'
-import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
 import { Loading, Xmark, Search } from '~/assets/svg'
+import { PopperWrapper } from '~/components/Popper'
+import UserSuggest from './SearchUser'
+import ContentSuggest from './SearchText'
 import { useState, useEffect, useRef } from 'react'
 import { useDebounce } from '~/hooks'
-import * as searchServices from '~/api-services/searchServices'
+import * as searchService from '~/services/searchService'
 
 const cx = classNames.bind(styles)
 
@@ -28,7 +30,7 @@ function SearchResult() {
     const fetchApi = async () => {
       setLoading(true)
       try {
-        const res = await searchServices.search(debounced)
+        const res = await searchService.search(debounced)
         if (res.status_code !== 422) {
           return setSearchResult(res.data)
         }

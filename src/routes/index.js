@@ -2,7 +2,7 @@ import Home from '~/pages/Home'
 import Following from '~/pages/Following'
 import Upload from '~/pages/Upload'
 import Profile from '~/pages/Profile'
-import { HeaderOnly } from '~/components/Layout'
+import { HeaderOnly } from '~/layouts'
 import routesConfig from '~/config/routes'
 
 // Don't Need Login

@@ -1,5 +1,5 @@
-import classNames from 'classnames/bind'
-import styles from './Profile.module.scss'
+// import classNames from 'classnames/bind'
+// import styles from './Profile.module.scss'
 
 function Profile() {
   return (
