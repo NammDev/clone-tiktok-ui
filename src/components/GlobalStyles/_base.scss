@@ -5,65 +5,26 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html *::-webkit-scrollbar {
-  border-radius: 0;
-  width: 8px;
-}
-html *::-webkit-scrollbar {
-  border-radius: 0;
-  width: 8px;
-}
-html *::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(22, 24, 35, 0.06);
-}
-html *::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(22, 24, 35, 0.06);
-}
-html *::-webkit-scrollbar-track {
-  border-radius: 0;
-  background-color: rgba(0, 0, 0, 0);
-}
-html *::-webkit-scrollbar-track {
-  border-radius: 0;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
-  body {
-    font-family: $font-primary;
-    font-size: 1.4rem;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-  }
+}
+
+body {
+  font-family: $font-primary;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
 }
 
 ul {
@@ -73,12 +34,4 @@ ul {
 a {
   cursor: pointer;
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
-  -webkit-appearance: none;
 }

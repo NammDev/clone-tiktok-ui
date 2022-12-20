@@ -47,36 +47,41 @@ function Menu({ children, items = [], onClickLogout, hideOnClick = false }) {
     })
   }
 
+  const renderResult = (attrs) => (
+    <div className={cx('menuList')} tabIndex='-1' {...attrs}>
+      <PopperWrapper className={cx('menuPopper')}>
+        {history.length > 1 && (
+          <Button
+            onClick={() => {
+              setHistory((prev) => prev.slice(0, prev.length - 1))
+            }}
+            className={cx('headerLanguage')}
+            hasIcon
+            left={<Back />}
+          >
+            Language
+          </Button>
+        )}
+        <ul className={history.length > 1 ? cx('languageList') : undefined}>{renderItems()}</ul>
+      </PopperWrapper>
+    </div>
+  )
+
+  // When user in menu level 2, click out & click in will be reset to menu level 1
+  const handleReset = () => {
+    setHistory((prev) => prev.slice(0, 1))
+  }
+
   return (
     <Tippy
       interactive
-      onHide={() => {
-        setHistory((prev) => prev.slice(0, 1))
-      }}
+      onHide={handleReset}
       appendTo={() => document.body}
       delay={[0, 300]}
       offset={[12, 10]}
       hideOnClick={hideOnClick}
       placement='bottom-end'
-      render={(attrs) => (
-        <div className={cx('menuList')} tabIndex='-1' {...attrs}>
-          <PopperWrapper className={cx('menuPopper')}>
-            {history.length > 1 && (
-              <Button
-                onClick={() => {
-                  setHistory((prev) => prev.slice(0, prev.length - 1))
-                }}
-                className={cx('headerLanguage')}
-                hasIcon
-                left={<Back />}
-              >
-                Language
-              </Button>
-            )}
-            <ul className={history.length > 1 ? cx('languageList') : undefined}>{renderItems()}</ul>
-          </PopperWrapper>
-        </div>
-      )}
+      render={renderResult}
     >
       {children}
     </Tippy>

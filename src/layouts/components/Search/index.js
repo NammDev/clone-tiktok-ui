@@ -17,12 +17,12 @@ function SearchResult() {
   const [visible, setVisible] = useState(true)
   const [loading, setLoading] = useState(false)
 
-  const debounced = useDebounce(inputSearch, 500)
+  const debouncedValue = useDebounce(inputSearch, 500)
 
   const inputRef = useRef(null)
 
   useEffect(() => {
-    if (!debounced.trim()) {
+    if (!debouncedValue.trim()) {
       setSearchResult([])
       return
     }
@@ -30,7 +30,7 @@ function SearchResult() {
     const fetchApi = async () => {
       setLoading(true)
       try {
-        const res = await searchService.search(debounced)
+        const res = await searchService.search(debouncedValue)
         if (res.status_code !== 422) {
           return setSearchResult(res.data)
         }
@@ -39,7 +39,7 @@ function SearchResult() {
       }
     }
     fetchApi()
-  }, [debounced])
+  }, [debouncedValue])
 
   return (
     <div className={cx('centerContainer')}>
