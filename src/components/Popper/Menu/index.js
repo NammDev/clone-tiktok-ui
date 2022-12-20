@@ -5,7 +5,6 @@ import { PopperWrapper } from '~/components/Popper'
 import Button from '~/components/Button'
 import { Back } from '~/assets/svg'
 import styles from './Menu.module.scss'
-import { faL } from '@fortawesome/free-solid-svg-icons'
 
 const cx = classNames.bind(styles)
 
@@ -15,8 +14,11 @@ function Menu({ children, items = [], onClickLogout, hideOnClick = false }) {
   const choose = current.choose
   const classes = (item, i) => {
     return cx('menuItem', {
+      // eslint-disable-next-line
       ['menuItem_language']: history.length > 1 && 'menuItem_language',
+      // eslint-disable-next-line
       ['languageChoose']: choose && choose === item.code,
+      // eslint-disable-next-line
       ['separate']: item.separate,
     })
   }
@@ -71,7 +73,7 @@ function Menu({ children, items = [], onClickLogout, hideOnClick = false }) {
                 Language
               </Button>
             )}
-            {renderItems()}
+            <ul className={history.length > 1 ? cx('languageList') : undefined}>{renderItems()}</ul>
           </PopperWrapper>
         </div>
       )}

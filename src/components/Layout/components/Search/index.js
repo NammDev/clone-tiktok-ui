@@ -99,8 +99,8 @@ function SearchResult() {
               <Xmark
                 onClick={() => {
                   setVisible(false)
-                  inputRef.current.focus()
                   setInputSearch('')
+                  inputRef.current.focus()
                 }}
               />
             )}

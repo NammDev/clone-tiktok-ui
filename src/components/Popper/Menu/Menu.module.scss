@@ -5,7 +5,8 @@
   .menuPopper {
     opacity: 1;
     transition: all 300ms ease 0s;
-    padding: 8px 0;
+    padding-bottom: 8px;
+    padding-top: 0;
   }
   .menuItem {
     margin-left: 0;
@@ -39,6 +40,8 @@
 }
 
 .headerLanguage {
+  position: fixed;
+  z-index: 10;
   padding: 0;
   margin-left: 0;
   width: 100%;
@@ -48,6 +51,7 @@
   height: 50px;
   font-size: 16px;
   line-height: 22px;
+  border-radius: 8px;
   svg {
     margin-left: 22px;
     margin-right: 18px;
@@ -55,4 +59,13 @@
   &:hover {
     background-color: transparent;
   }
+}
+
+.languageList {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  max-height: 590px;
+  overflow-y: auto;
+  margin-top: 50px;
 }

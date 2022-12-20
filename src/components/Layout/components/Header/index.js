@@ -26,6 +26,7 @@ import SearchResult from '../Search'
 import routesConfig from '~/config/routes'
 
 const cx = classNames.bind(styles)
+
 const menuItems = [
   {
     icon: <Language />,
@@ -48,7 +49,7 @@ const menuItems = [
         },
         {
           code: 'po',
-          title: 'Polski',
+          title: 'Polski (Polska)',
         },
         {
           code: 'in ',
@@ -57,6 +58,71 @@ const menuItems = [
         {
           code: 'po',
           title: 'Korea',
+        },
+        {
+          code: 'vi',
+          title: '한국어 (대한민국)',
+        },
+        {
+          code: 'it',
+          title: 'Bahasa Melayu (Malaysia)',
+        },
+        {
+          code: 'po',
+          title: 'မြန်မာ (မြန်မာ)',
+        },
+        {
+          code: 'in ',
+          title: 'Українська (Україна)',
+        },
+        {
+          code: 'po',
+          title: 'Português (Brasil)',
+        },
+        {
+          code: 'vi',
+          title: 'Türkçe (Türkiye)',
+        },
+        {
+          code: 'it',
+          title: 'ไทย (ไทย)',
+        },
+        {
+          code: 'po',
+          title: 'Svenska (Sverige)',
+        },
+        {
+          code: 'in ',
+          title: 'Русский (Россия)',
+        },
+
+        {
+          code: 'po',
+          title: 'Română (Romania)',
+        },
+        {
+          code: 'vi',
+          title: 'العربية',
+        },
+        {
+          code: 'it',
+          title: 'বাঙ্গালি (ভারত)',
+        },
+        {
+          code: 'po',
+          title: 'Cebuano (Pilipinas)',
+        },
+        {
+          code: 'in ',
+          title: 'Deutsch',
+        },
+        {
+          code: 'in ',
+          title: 'Čeština (Česká republika)',
+        },
+        {
+          code: 'po',
+          title: 'Ελληνικά (Ελλάδα)',
         },
       ],
     },
@@ -69,40 +135,7 @@ const userMenu = [
   { icon: <TiktokCircle />, title: 'Get Coins' },
   { icon: <Live />, title: 'LIVE Studio' },
   { icon: <Settings />, title: 'Settings' },
-  {
-    icon: <Language />,
-    title: 'English',
-    children: {
-      title: 'Language',
-      choose: 'en',
-      data: [
-        {
-          code: 'en',
-          title: 'English',
-        },
-        {
-          code: 'vi',
-          title: 'Tiếng Việt',
-        },
-        {
-          code: 'it',
-          title: 'Italiano',
-        },
-        {
-          code: 'po',
-          title: 'Polski',
-        },
-        {
-          code: 'in ',
-          title: 'Basarawa',
-        },
-        {
-          code: 'po',
-          title: 'Korea',
-        },
-      ],
-    },
-  },
+  menuItems[0],
   { icon: <Feedback />, title: 'Feedback and help', to: routesConfig.upload },
   { icon: <Keyboard />, title: 'Keyboard shortcuts', to: routesConfig.home },
   { icon: <Logout />, title: 'Log out', separate: true },
