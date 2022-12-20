@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import styles from './SearchUser.module.scss'
 import { CircleCheck } from '~/assets/svg'
@@ -22,6 +23,10 @@ function SearchUser({ user, onClick }) {
       </div>
     </Link>
   )
+}
+
+SearchUser.propTypes = {
+  user: PropTypes.object,
 }
 
 export default SearchUser
