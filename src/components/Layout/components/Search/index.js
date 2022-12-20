@@ -5,9 +5,9 @@ import { PopperWrapper, ContentSuggest, UserSuggest } from '~/components/Popper'
 import { Loading, Xmark, Search } from '~/assets/svg'
 import { useState, useEffect, useRef } from 'react'
 import { useDebounce } from '~/hooks'
+import * as searchServices from '~/api-services/searchServices'
 
 const cx = classNames.bind(styles)
-const URL_SEARCH_USER = 'https://tiktok.fullstack.edu.vn/api/users/search'
 
 function SearchResult() {
   const [inputSearch, setInputSearch] = useState('')
@@ -24,16 +24,19 @@ function SearchResult() {
       setSearchResult([])
       return
     }
-    setLoading(true)
-    fetch(`${URL_SEARCH_USER}?q=${encodeURIComponent(debounced)}&type=less`)
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(false)
+    // Fetch API
+    const fetchApi = async () => {
+      setLoading(true)
+      try {
+        const res = await searchServices.search(debounced)
         if (res.status_code !== 422) {
           return setSearchResult(res.data)
         }
-      })
-      .catch(() => setLoading(false))
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchApi()
   }, [debounced])
 
   return (
@@ -53,7 +56,7 @@ function SearchResult() {
                 ))}
                 <div className={cx('sugAccount')}>Accounts</div>
                 {searchResult.map((user) => (
-                  <UserSuggest key={user.id} user={user} />
+                  <UserSuggest key={user.id} user={user} onClick={() => setVisible(false)} />
                 ))}
                 <div className={cx('sugResult')}>
                   <p>View all results for "{inputSearch}"</p>
